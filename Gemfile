@@ -8,6 +8,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'pg', '~> 1.2', '>= 1.2.3'  
 gem 'bcrypt', '~> 3.1', '>= 3.1.16'
 gem 'jwt', '~> 2.3'
+gem 'simple_command', '~> 0.1.0'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
