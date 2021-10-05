@@ -3,22 +3,34 @@
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
-Things you may want to cover:
+For this you need following gems:
+* gem 'pg', '~> 1.2', '>= 1.2.3'  
+* gem 'bcrypt', '~> 3.1', '>= 3.1.16'
+* gem 'jwt', '~> 2.3'
+* gem 'simple_command', '~> 0.1.0'
 
-* Ruby version
+You also need to create some resource to be requested as a test. Run this command to create a resource from top to bottom:
+rails g scaffold Item name:string description:text
+rails db:migrate
 
-* System dependencies
+After this, run the console:
+rails c
 
-* Configuration
+* Create some Item:
+Item.create!(name: 'Laptop', description: 'A fun toy')
 
-* Database creation
+* Create a user
+User.create!(email: 'example@mail.com' , password: '123123123' , password_confirmation: '123123123')
 
-* Database initialization
+* curl -H "Content-Type: application/json" -X POST -d '{"email":"example@mail.com","password":"123123123"}' http://localhost:3000/authenticate
 
-* How to run the test suite
+* Your token will now be returned, an example:
+{"auth_token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE0NjA2NTgxODZ9.xsSwcPC22IR71OBv6bU_OGCSyfE89DvEzWfDU0iybMA"}
 
-* Services (job queues, cache servers, search engines, etc.)
+* Copy the token you got returned 
 
-* Deployment instructions
+* Insert that token in this curl request:
+curl -H "Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE0NjA2NTgxODZ9.xsSwcPC22IR71OBv6bU_OGCSyfE89DvEzWfDU0iybMA" http://localhost:3000/items
 
-* ...
+* With the token prepended, you will get an array ([]) returned
+
