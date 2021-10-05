@@ -1,7 +1,6 @@
-# README
+# README - JWT Token
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+An example of Token-based Authentication (also known as JSON Web Token authentication) 
 
 For this you need following gems:
 * gem 'pg', '~> 1.2', '>= 1.2.3'  
